@@ -53,7 +53,7 @@ cd portal-inmobiliario-ionic
 ### 2. Configure environment variables
 Copy `.env.example` to `.env` and edit as needed:
 ```bash
-cp .env.example .env
+copy .env.example .env
 # Edit DB credentials, Gemini API key, etc.
 ```
 
@@ -150,3 +150,4 @@ MIT
 - If MySQL port 3306 is in use, the compose file maps to 3307 by default.
 - If you see AI errors, check your `GEMINI_API_KEY` or leave it blank for fallback.
 - For any issues, open an issue on GitHub.
+
