@@ -1,0 +1,32 @@
+.actions {
+	display: flex;
+	gap: 12px;
+	padding: 16px;
+	justify-content: flex-end;
+}
+
+.saving {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.2);
+	display: grid;
+	place-items: center;
+	z-index: 1000;
+	color: #fff;
+
+	span {
+		margin-top: 8px;
+	}
+}
+
+.desc-header {
+	--min-height: 44px;
+	.ai-btn {
+		--padding-start: 12px;
+		--padding-end: 12px;
+		--padding-top: 6px;
+		--padding-bottom: 6px;
+		font-size: 0.95rem;
+		height: auto;
+	}
+}

@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Idealistia</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar placeholder="Buscar (título, ciudad)" [(ngModel)]="query" (ionInput)="applySearch()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="load($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="empty" *ngIf="!loading && filtered.length === 0">
+    <ion-icon name="home-outline"></ion-icon>
+    <h2>Sin propiedades</h2>
+    <p>Empieza creando tu primera propiedad.</p>
+    <ion-button color="primary" (click)="addNew()">Añadir</ion-button>
+  </div>
+
+  <ion-list *ngIf="filtered.length">
+    <ion-item-sliding *ngFor="let p of filtered">
+      <ion-item button detail (click)="edit(p)">
+        <ion-thumbnail slot="start" *ngIf="p.images">
+          <img [src]="p.images" alt="imagen" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ p.title }}</h2>
+          <p class="subtitle">{{ p.city }} • {{ p.propertyType }} • {{ p.transactionType }}</p>
+          <p class="meta" *ngIf="p.bedrooms">Habitaciones: {{ p.bedrooms }}</p>
+        </ion-label>
+        <div slot="end" class="price" *ngIf="p.price">{{ p.price | currency:'EUR' }}</div>
+      </ion-item>
+
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="confirmDelete(p)">
+            <ion-icon name="trash"></ion-icon>
+            Eliminar
+          </ion-item-option>
+        </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button color="primary" (click)="addNew()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

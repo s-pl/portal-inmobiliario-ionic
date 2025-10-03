@@ -1,0 +1,109 @@
+{
+  "info": {
+    "name": "Properties API",
+    "_postman_id": "a3df4b30-9b55-4f8a-88cd-6d8b372f7cc9",
+    "description": "Colección de endpoints para el portal inmobiliario con Sequelize y Node.js",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Crear propiedad",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Piso en el centro\",\n  \"description\": \"Bonito piso de 3 habitaciones en el centro de la ciudad\",\n  \"price\": 120000,\n  \"propertyType\": \"Apartamento\",\n  \"transactionType\": \"Venta\",\n  \"bedrooms\": 3,\n  \"city\": \"Las Palmas\",\n  \"images\": [\"https://example.com/img1.jpg\", \"https://example.com/img2.jpg\"],\n  \"contactPhone\": \"600123456\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/properties",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "properties"]
+        }
+      }
+    },
+    {
+      "name": "Obtener todas las propiedades",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/properties",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "properties"]
+        }
+      }
+    },
+    {
+      "name": "Obtener propiedad por ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/properties/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "properties", "1"]
+        }
+      }
+    },
+    {
+      "name": "Actualizar propiedad",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"price\": 130000,\n  \"city\": \"Telde\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/properties/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "properties", "1"]
+        }
+      }
+    },
+    {
+      "name": "Eliminar propiedad",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:3000/api/properties/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "properties", "1"]
+        }
+      }
+    },
+    {
+      "name": "Generar descripción con IA",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Chalet con vistas al mar\",\n  \"propertyType\": \"Chalet\",\n  \"transactionType\": \"Alquiler\",\n  \"bedrooms\": 4,\n  \"city\": \"Maspalomas\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/properties/generate-description",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "properties", "generate-description"]
+        }
+      }
+    }
+  ]
+}

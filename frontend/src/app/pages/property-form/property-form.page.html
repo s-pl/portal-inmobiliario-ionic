@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/property-list"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ id ? 'Editar' : 'Nueva' }} propiedad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="full">
+    <ion-item>
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input [(ngModel)]="model.title" placeholder="Ático luminoso"></ion-input>
+    </ion-item>
+
+    <ion-item class="desc-header" lines="none">
+      <ion-label>Descripción</ion-label>
+      <ion-button class="ai-btn" slot="end" fill="outline" color="primary" (click)="generateAI()" [disabled]="!canGenerateAI()">
+        <ion-icon slot="start" name="sparkles-outline"></ion-icon>
+        Generar con IA
+      </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-textarea autoGrow="true" [(ngModel)]="model.description" placeholder="Detalles de la vivienda"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Precio</ion-label>
+      <ion-input type="number" inputmode="decimal" [(ngModel)]="model.price" placeholder="150000">
+        <div slot="end">€</div>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tipo de propiedad</ion-label>
+      <ion-select [(ngModel)]="model.propertyType">
+        <ion-select-option value="piso">Piso</ion-select-option>
+        <ion-select-option value="casa">Casa</ion-select-option>
+        <ion-select-option value="ático">Ático</ion-select-option>
+        <ion-select-option value="chalet">Chalet</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Transacción</ion-label>
+      <ion-segment [(ngModel)]="model.transactionType">
+        <ion-segment-button value="venta">Venta</ion-segment-button>
+        <ion-segment-button value="alquiler">Alquiler</ion-segment-button>
+      </ion-segment>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Habitaciones</ion-label>
+      <ion-input type="number" [(ngModel)]="model.bedrooms" placeholder="3"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Ciudad</ion-label>
+      <ion-input [(ngModel)]="model.city" placeholder="Madrid"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Teléfono de contacto</ion-label>
+      <ion-input [(ngModel)]="model.contactPhone" placeholder="600 123 456"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Imagen principal (URL)</ion-label>
+      <ion-input [(ngModel)]="imageUrl" placeholder="https://..."></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <div class="actions">
+    <ion-button fill="clear" color="medium" routerLink="/property-list">Cancelar</ion-button>
+    <ion-button color="primary" (click)="save()" [disabled]="!model.title || saving">
+      {{ saving ? 'Guardando...' : 'Guardar' }}
+    </ion-button>
+  </div>
+
+  <div class="saving" *ngIf="saving">
+    <ion-spinner name="crescent"></ion-spinner>
+    <span>Guardando...</span>
+  </div>
+</ion-content>
